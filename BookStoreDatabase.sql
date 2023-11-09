@@ -84,3 +84,41 @@ CREATE TABLE KitapResim (
     FOREIGN KEY (kitapno) REFERENCES Kitaplar(kitapno),
     FOREIGN KEY (resimno) REFERENCES Resimler(resimno)
 );
+
+
+-- Kitaplar Tablosu
+INSERT INTO Kitaplar (kitapno, isbn, adi, onsöz, url, satis_fiyati, basim_yili)
+VALUES (1, '1234567890123', 'Kitap 1', 'Önsöz 1', 'http://example.com/1', 29.99, 2022);
+
+-- Müşteriler Tablosu
+INSERT INTO Musteriler (musterino, ad, soyad, tlfno, e_posta, adres, adres_ili, adres_ilcesi)
+VALUES (1, 'Ahmet', 'Yılmaz', '5551234567', 'ahmet@example.com', 'İstanbul', 'İstanbul', 'Beşiktaş');
+
+-- Kitap Siparişleri Tablosu
+INSERT INTO KitapSiparis (siparis_id, musterino, kitapno)
+VALUES (1, 1, 1);
+
+-- Yayınevleri Tablosu
+INSERT INTO Yayinevleri (yayinevino, ad, url, adres, adres_ili, adres_ilcesi)
+VALUES (1, 'Yayınevi 1', 'http://yayinevi1.com', 'İstanbul', 'İstanbul', 'Kadıköy');
+
+-- Kitap Yayınları Tablosu
+INSERT INTO KitapYayin (kitapno, yayinevino)
+VALUES (1, 1);
+
+-- Yazarlar Tablosu
+INSERT INTO Yazarlar (yazarno, ad, soyad, url, adres, adres_ili, adres_ilcesi)
+VALUES (1, 'Yazar 1', 'Soyad 1', 'http://yazar1.com', 'İstanbul', 'İstanbul', 'Üsküdar');
+
+-- Kitap Yazarları Tablosu
+INSERT INTO KitapYazar (kitapno, yazarno)
+VALUES (1, 1);
+
+-- Resimler Tablosu
+INSERT INTO Resimler (resimno, dosya_adi, dosya_konumu)
+VALUES (1, 'resim1.jpg', '/resimler/');
+
+-- Kitap Resimleri Tablosu
+INSERT INTO KitapResim (kitapno, resimno)
+VALUES (1, 1);
+
