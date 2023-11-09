@@ -122,3 +122,10 @@ VALUES (1, 'resim1.jpg', '/resimler/');
 INSERT INTO KitapResim (kitapno, resimno)
 VALUES (1, 1);
 
+-- SEQUENCE 
+CREATE SEQUENCE kitap_no_seq
+START WITH 1
+INCREMENT BY 1
+NO MINVALUE
+NO MAXVALUE
+CACHE 10;
