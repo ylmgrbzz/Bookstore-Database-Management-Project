@@ -166,3 +166,35 @@ BEGIN
     END WHILE;
     CLOSE kitap_cursor;
 END;
+
+--Functions
+
+CREATE FUNCTION kitap_yayinevi (kitapno INT)
+RETURNS VARCHAR(100)
+AS
+BEGIN
+    RETURN (SELECT yayinevi FROM KitapYayin
+             WHERE kitapno = kitapno);
+END;
+
+CREATE FUNCTION kitap_satis_fiyati_guncelle (kitapno INT)
+AS
+BEGIN
+    UPDATE Kitaplar
+    SET satis_fiyati = satis_fiyati * (1 + (SELECT vergi_orani FROM Vergiler));
+END;
+
+CREATE FUNCTION kitap_listesi ()
+RETURNS TABLE (
+    kitapno INT,
+    adi VARCHAR(255),
+    satis_fiyati DECIMAL(10, 2)
+)
+AS
+BEGIN
+    RETURN (
+        SELECT kitapno, adi, satis_fiyati
+        FROM Kitaplar
+        ORDER BY satis_fiyati DESC
+    );
+END;
