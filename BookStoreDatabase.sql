@@ -135,3 +135,8 @@ VALUES ('1234567890124', 'Kitap 2', 'Önsöz 2', 'http://example.com/2', 39.99, 
 RETURNING kitapno INTO @kitap_no_seq;
 
 SELECT @kitap_no_seq;
+
+
+UPDATE KitapYayin
+SET yayinevino = (SELECT yayinevino FROM Yayinevleri WHERE ad = 'Yayınevi 2')
+WHERE kitapno = @kitapno;
