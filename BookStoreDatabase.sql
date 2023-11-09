@@ -150,3 +150,19 @@ BEGIN
 
 Önsöz: ', NEW.onsöz));
 END;
+
+
+--Cursor
+DECLARE
+    kitapno INT;
+    yazar VARCHAR(50);
+    yayinevi VARCHAR(100);
+BEGIN
+    OPEN kitap_cursor;
+    FETCH NEXT FROM kitap_cursor INTO kitapno, yazar, yayinevi;
+    WHILE @@FETCH_STATUS = 0 DO
+        PRINT CONCAT('Kitap no: ', kitapno, ', Yazar: ', yazar, ', Yayınevi: ', yayinevi);
+        FETCH NEXT FROM kitap_cursor INTO kitapno, yazar, yayinevi;
+    END WHILE;
+    CLOSE kitap_cursor;
+END;
