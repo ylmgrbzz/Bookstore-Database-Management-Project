@@ -140,3 +140,13 @@ SELECT @kitap_no_seq;
 UPDATE KitapYayin
 SET yayinevino = (SELECT yayinevino FROM Yayinevleri WHERE ad = 'Yayınevi 2')
 WHERE kitapno = @kitapno;
+
+--Trigger
+AFTER INSERT ON Kitaplar
+FOR EACH ROW
+BEGIN
+    INSERT INTO KitapOzetleri (kitapno, ozet)
+    VALUES (NEW.kitapno, CONCAT('Kitap adı: ', NEW.adi, '
+
+Önsöz: ', NEW.onsöz));
+END;
