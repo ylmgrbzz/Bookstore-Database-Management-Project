@@ -129,3 +129,9 @@ INCREMENT BY 1
 NO MINVALUE
 NO MAXVALUE
 CACHE 10;
+
+INSERT INTO Kitaplar (isbn, adi, onsöz, url, satis_fiyati, basim_yili)
+VALUES ('1234567890124', 'Kitap 2', 'Önsöz 2', 'http://example.com/2', 39.99, 2023)
+RETURNING kitapno INTO @kitap_no_seq;
+
+SELECT @kitap_no_seq;
